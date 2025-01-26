@@ -10,11 +10,12 @@ describe("SocialAccount Model Test", () => {
   beforeAll(async () => {
     await connectDB();
     // Test için kullanıcı oluştur
-    const user = (await User.create({
-      username: "testuser",
-      email: "test@test.com",
+    const user = new User({
+      username: "socialaccountmodeltest",
+      email: "socialaccountmodel@test.com",
       password: "password123",
-    })) as IUser;
+    });
+    await user.save();
     userId = user._id;
   });
 

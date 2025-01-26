@@ -7,4 +7,8 @@ module.exports = {
   clearMocks: true,
   resetMocks: true,
   restoreMocks: true,
+  testTimeout: 10000,
+  maxConcurrency: 1,
+  maxWorkers: 1,
+  detectOpenHandles: true,
 };

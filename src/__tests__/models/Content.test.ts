@@ -23,11 +23,11 @@ describe("Content Model Test", () => {
     await Content.deleteMany({});
 
     // Test için kullanıcı ve sosyal medya hesabı oluştur
-    const user = (await User.create({
-      username: "testuser",
-      email: "test@test.com",
+    const user = await User.create({
+      username: "contentmodeltest",
+      email: "contentmodel@test.com",
       password: "password123",
-    })) as IUser;
+    });
 
     const account = (await SocialAccount.create({
       platform: "twitter",

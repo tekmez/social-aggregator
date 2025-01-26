@@ -3,6 +3,7 @@ import { UserService } from "../../services/UserService";
 import { User } from "../../models/User";
 import connectDB from "../../config/database";
 import { CreateUserDto, UpdateUserDto } from "../../types/services";
+import { Types } from "mongoose";
 
 describe("UserService", () => {
   let userService: UserService;
@@ -15,9 +16,14 @@ describe("UserService", () => {
   afterAll(async () => {
     await mongoose.connection.dropDatabase();
     await mongoose.connection.close();
+    await new Promise((resolve) => setTimeout(resolve, 1000)); // Bağlantının tamamen kapanması için bekle
   });
 
   beforeEach(async () => {
+    await User.deleteMany({});
+  });
+
+  afterEach(async () => {
     await User.deleteMany({});
   });
 
@@ -58,8 +64,8 @@ describe("UserService", () => {
   describe("findById", () => {
     it("should find user by id", async () => {
       const userData: CreateUserDto = {
-        username: "testuser",
-        email: "test@test.com",
+        username: "findbyidtest",
+        email: "findbyid@test.com",
         password: "password123",
       };
 
